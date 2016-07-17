@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-]
+    url(r'^$',  'warehouse.views.home', name='home'),
+]  + static(settings.CSS , document_root = settings.CSS_ROOT )
+urlpatterns += static(settings.JS, document_root = settings.JS_ROOT )
+urlpatterns += static(settings.IMG, document_root = settings.IMG_ROOT )
